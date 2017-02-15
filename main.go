@@ -105,6 +105,12 @@ func (m *Message) AddBcc(addresses ...string) error {
 	return appendMailAddresses(&m.Bcc, addresses...)
 }
 
+func (m *Message) AddAttachment(name string, data io.Reader) error {
+	m.Attachments = append(m.Attachments, Attachment{Name: name, Data: data})
+	return nil
+
+}
+
 // An Attachment represents an email attachment.
 type Attachment struct {
 	// Name must be set to a valid file name.
